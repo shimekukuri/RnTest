@@ -10,6 +10,7 @@ import {
 } from '../../features/pokemonParty/PokePartySlice';
 import {RootState} from '@/store/store';
 import {updateParty} from '@/features/pokemonPartyStore/PokemonPartyStore';
+import {useEffect} from 'react';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'pokemonSearch'>;
 
@@ -25,6 +26,10 @@ export function PokemonSearchById({
   const currentParty: PokeParty = useSelector(
     (state: RootState) => state.PokemonPartyReducer,
   );
+
+  useEffect(() => {
+    dispatch(updateParty(currentParty));
+  }, [currentParty]);
 
   let content;
 
