@@ -1,118 +1,71 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+import {StatusBar} from 'react-native';
+import {Home} from './screens/home/Home';
+import {TestScreen} from './screens/testScreen/TestScreen';
+import {Provider} from 'react-redux';
+import {persistor, store} from './store/store';
+import {FeatureA} from './screens/featureA/FeatureAScreen';
+import {FeatureB} from './screens/featureB/FeatureBScreen';
+import {FeatureC} from './screens/featureC/FeatureCScreen';
+import {PokemonSearchById} from './screens/pokemonSearchById/PokemonSearchById';
+import {PokemonSearchInputScreen} from './screens/pokemonSearchInput/PokemonSearchInputScreen';
+import {FetchTest} from './screens/testFetch/TestFetch';
+import {PersistGate} from 'redux-persist/integration/react';
+import {PokeHome} from './screens/pokeHome/PokeHome';
+import {CurrentParty} from '@/screens/pokemonCurrentParty/CurrentParty';
+import {SelectedParty} from '@/screens/pokemonCurrentParty/SelectedParty';
+import {SavedParties} from './screens/pokemonSavedParties/SavedParties';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+export type RootStackParamList = {
+  home: undefined;
+  testScreen: undefined;
+  featureA: undefined;
+  featureB: undefined;
+  featureC: undefined;
+  pokeHome: undefined;
+  pokemonSearch: {pokemon: string};
+  pokemonSearchInput: undefined;
+  fetchTest: undefined;
+  selectedParty: {partyId: string};
+  currentParty: undefined;
+  savedParties: undefined;
+};
 
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-}
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <StatusBar />
+        <NavigationContainer>
+          <Stack.Navigator initialRouteName="home">
+            <Stack.Screen name="home" component={Home} />
+            <Stack.Screen name="pokeHome" component={PokeHome} />
+            <Stack.Screen name="testScreen" component={TestScreen} />
+            <Stack.Screen name="featureA" component={FeatureA} />
+            <Stack.Screen name="featureB" component={FeatureB} />
+            <Stack.Screen name="featureC" component={FeatureC} />
+            <Stack.Screen name="fetchTest" component={FetchTest} />
+            <Stack.Screen name="selectedParty" component={SelectedParty} />
+            <Stack.Screen name="currentParty" component={CurrentParty} />
+            <Stack.Screen name="savedParties" component={SavedParties} />
+            <Stack.Screen
+              name="pokemonSearch"
+              component={PokemonSearchById}
+              options={{presentation: 'modal'}}
+            />
+            <Stack.Screen
+              name="pokemonSearchInput"
+              component={PokemonSearchInputScreen}
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </PersistGate>
+    </Provider>
   );
 }
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
 
 export default App;
