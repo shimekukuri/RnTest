@@ -1,16 +1,16 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {Home} from '../home/Home';
-import {PokeHome} from '../pokeHome/PokeHome';
-import {TestScreen} from '../testScreen/TestScreen';
-import {FeatureA} from '../featureA/FeatureAScreen';
-import {FeatureB} from '../featureB/FeatureBScreen';
-import {FeatureC} from '../featureC/FeatureCScreen';
-import {FetchTest} from '../testFetch/TestFetch';
-import {SelectedParty} from '../pokemonCurrentParty/SelectedParty';
-import {CurrentParty} from '../pokemonCurrentParty/CurrentParty';
-import {SavedParties} from '../pokemonSavedParties/SavedParties';
-import {PokemonSearchById} from '../pokemonSearchById/PokemonSearchById';
-import {PokemonSearchInputScreen} from '../pokemonSearchInput/PokemonSearchInputScreen';
+import {Home} from '@/screens/home/Home';
+import {PokeHome} from '@/screens/pokeHome/PokeHome';
+import {TestScreen} from '@/screens/testScreen/TestScreen';
+import {FeatureA} from '@/screens/featureA/FeatureAScreen';
+import {FeatureB} from '@/screens/featureB/FeatureBScreen';
+import {FeatureC} from '@/screens/featureC/FeatureCScreen';
+import {FetchTest} from '@/screens/testFetch/TestFetch';
+import {SelectedParty} from '@/screens/pokemonCurrentParty/SelectedParty';
+import {CurrentParty} from '@/screens/pokemonCurrentParty/CurrentParty';
+import {SavedParties} from '@/screens/pokemonSavedParties/SavedParties';
+import {PokemonSearchById} from '@/screens/pokemonSearchById/PokemonSearchById';
+import {PokemonSearchInputScreen} from '@/screens/pokemonSearchInput/PokemonSearchInputScreen';
 
 export type RootStackParamList = {
   home: undefined;
