@@ -1,8 +1,8 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {View, Text, FlatList} from 'react-native';
-import {RootStackParamList} from 'App';
 import {useDispatch, useSelector} from 'react-redux';
 import {AppDispatch, RootState} from '@/store/store';
+import { RootStackParamList } from '../StackNav/Navigator';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'currentParty'>;
 

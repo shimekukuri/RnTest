@@ -14,6 +14,7 @@ const config = {
       '@features': __dirname + '/features',
       '@screens': __dirname + '/screens',
       '@store': __dirname + '/store',
+      '@hooks': __dirname + '/hooks',
     },
   },
 };

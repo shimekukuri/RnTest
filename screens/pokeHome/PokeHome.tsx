@@ -1,8 +1,9 @@
 import {View, StyleSheet} from 'react-native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {RootStackParamList} from '../../App';
 import {PokeHomeButtonController} from './pokeHomeButtonController/PokemonHomeButtonController';
 import {testData} from './pokeHomeButtonData/testData';
+import { RootStackParamList } from '../StackNav/Navigator';
+
 type Props = NativeStackScreenProps<RootStackParamList>;
 
 export function PokeHome({navigation}: Props) {

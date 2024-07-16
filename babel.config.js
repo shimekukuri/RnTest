@@ -10,6 +10,7 @@ module.exports = {
           '@features': './features',
           '@screens': './screens',
           '@store': './store',
+          '@hooks': './hooks',
         },
       },
     ],

@@ -1,7 +1,7 @@
 import {Button, TextInput, View} from 'react-native';
-import {RootStackParamList} from '../../App';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {useState} from 'react';
+import { RootStackParamList } from '../StackNav/Navigator';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'pokemonSearchInput'>;
 

@@ -5,7 +5,8 @@
     "paths": {
       "@/features/*": ["features/*"],
       "@/screens/*": ["screens/*"],
-      "@/store/*": ["store/*"]
+      "@/store/*": ["store/*"],
+      "@/hooks/*": ["hooks/*"]
     }
   }
 }

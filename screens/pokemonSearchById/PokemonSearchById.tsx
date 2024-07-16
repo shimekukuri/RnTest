@@ -1,6 +1,5 @@
 import {Button, Image, StyleSheet, Text, View} from 'react-native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {RootStackParamList} from '../../App';
 import {useGetPokemonByIdQuery} from '../../features/pokemonApi/pokemonApiSlice';
 import {Dispatch} from '@reduxjs/toolkit';
 import {useDispatch, useSelector} from 'react-redux';
@@ -11,6 +10,7 @@ import {
 import {RootState} from '@/store/store';
 import {updateParty} from '@/features/pokemonPartyStore/PokemonPartyStore';
 import {useEffect} from 'react';
+import { RootStackParamList } from '../StackNav/Navigator';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'pokemonSearch'>;
 

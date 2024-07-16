@@ -1,7 +1,7 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {View, Text} from 'react-native';
-import {RootStackParamList} from '../../App';
 import {useEffect, useState} from 'react';
+import { RootStackParamList } from '../StackNav/Navigator';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'fetchTest'>;
 

@@ -1,10 +1,10 @@
 import {Button, Text, View} from 'react-native';
-import {RootStackParamList} from '../../App';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import { RootStackParamList } from '../StackNav/Navigator';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'home'>;
 
-export function Home({route, navigation}: Props) {
+export function Home({navigation}: Props) {
   return (
     <View>
       <Text>Home</Text>

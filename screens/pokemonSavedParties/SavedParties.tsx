@@ -1,10 +1,9 @@
 import {Button, FlatList, StyleSheet, Text, View} from 'react-native';
-import {RootStackParamList} from 'App';
+import { RootStackParamList } from '../StackNav/Navigator';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {useDispatch, useSelector} from 'react-redux';
 import {AppDispatch, RootState} from '@/store/store';
 import {
-  updateParty,
   removeParty,
 } from '@/features/pokemonPartyStore/PokemonPartyStore';
 import {loadParty} from '@/features/pokemonParty/PokePartySlice';
@@ -13,9 +12,6 @@ type Props = NativeStackScreenProps<RootStackParamList, 'savedParties'>;
 
 export function SavedParties({}: Props) {
   const dispatch: AppDispatch = useDispatch();
-  const currentParty = useSelector(
-    (store: RootState) => store.PokemonPartyReducer,
-  );
   const parties = useSelector(
     (state: RootState) => state.PokeStoreReducer.store,
   );
