@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   FlatList,
   GestureResponderEvent,
@@ -5,10 +6,10 @@ import {
   StyleSheet,
   ViewStyle,
 } from 'react-native';
-import {RootStackParamList} from '../../../App';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {ReactNode} from 'react';
 import {PokeHomeButton} from '../pokeHomeButton/PokeHomeButton';
+import {RootStackParamList} from '@/screens/StackNav/Navigator';
 
 export interface pokeButton {
   onPress: (

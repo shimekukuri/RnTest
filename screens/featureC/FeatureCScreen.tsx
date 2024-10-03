@@ -2,7 +2,7 @@ import {Button, FlatList, Pressable, Text, TextInput, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {AppDispatch, RootState} from '../../store/store';
 import {removeItem, addItem} from '../../features/featureC/featureC';
-import {useState} from 'react';
+import {Children, ReactNode, useState} from 'react';
 
 export function FeatureC() {
   const value = useSelector((state: RootState) => state.featureCReducer.items);

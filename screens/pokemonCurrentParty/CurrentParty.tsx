@@ -1,19 +1,17 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {View, Text, FlatList} from 'react-native';
+import {View, Text, FlatList, StyleSheet, Button, Image} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {AppDispatch, RootState} from '@/store/store';
-import { RootStackParamList } from '../StackNav/Navigator';
+import {RootStackParamList} from '../StackNav/Navigator';
+import {removePartyMember} from '@/features/pokemonParty/PokePartySlice';
+import {updateParty} from '@/features/pokemonPartyStore/PokemonPartyStore';
+import {useEffect} from 'react';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'currentParty'>;
 
-export function CurrentParty({navigation}: Props) {
+export function CurrentParty({}: Props) {
   const dispatch: AppDispatch = useDispatch();
   const party = useSelector((state: RootState) => state.PokemonPartyReducer);
-
-  console.log(
-    'This is from the Current Party screen upon navigation\n\n this is the party state:\n\n',
-    party,
-  );
 
   let content;
 
@@ -25,19 +23,30 @@ export function CurrentParty({navigation}: Props) {
     );
   }
 
+  useEffect(() => {
+    dispatch(updateParty(party));
+  }, [party]);
+
   return (
-    <View>
+    <View style={{width: '100%'}}>
       <FlatList
         data={party.party}
         keyExtractor={({id}) => id}
-        renderItem={({item: {pokemon}}) => {
-          console.log(
-            'This is the interior of the current party renderItem\n\n var pokemon\n\n',
-            pokemon,
-          );
+        contentContainerStyle={styles.container}
+        renderItem={({item: {pokemon, id}}) => {
           return (
-            <View>
+            <View style={styles.item}>
+              <Image
+                src={pokemon.sprites?.front_default}
+                style={styles.sprite}
+              />
               <Text>{pokemon.name}</Text>
+              <Button
+                onPress={() => {
+                  dispatch(removePartyMember(id));
+                }}
+                title={'Remove'}
+              />
             </View>
           );
         }}
@@ -45,3 +54,26 @@ export function CurrentParty({navigation}: Props) {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingTop: 10,
+    gap: 10,
+    paddingLeft: 10,
+    paddingRight: 10,
+  },
+  item: {
+    alignItems: 'center',
+    width: '100%',
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    borderColor: 'red',
+    borderWidth: 1,
+  },
+  sprite: {
+    width: 50,
+    height: 50,
+  },
+});

@@ -1,0 +1,7 @@
+React Hook Form
+
+provider for updating pricing values in the work sheet
+
+look through the data and model it more according to what is laready going on.
+
+need to generalize types accross sub components

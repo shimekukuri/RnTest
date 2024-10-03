@@ -1,4 +1,4 @@
-import {Button, Image, StyleSheet, Text, View} from 'react-native';
+import {Button, FlatList, Image, StyleSheet, Text, View} from 'react-native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {useGetPokemonByIdQuery} from '../../features/pokemonApi/pokemonApiSlice';
 import {Dispatch} from '@reduxjs/toolkit';
@@ -10,7 +10,7 @@ import {
 import {RootState} from '@/store/store';
 import {updateParty} from '@/features/pokemonPartyStore/PokemonPartyStore';
 import {useEffect} from 'react';
-import { RootStackParamList } from '../StackNav/Navigator';
+import {RootStackParamList} from '../StackNav/Navigator';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'pokemonSearch'>;
 
@@ -46,13 +46,24 @@ export function PokemonSearchById({
         <Text>An error has occured</Text>
       </View>
     );
-  } else if (isSuccess && data?.sprites?.front_default) {
-    return (
-      <View>
-        <Text>fetch succeeded</Text>
+  } else if (isSuccess && data?.sprites?.front_default && data.name) {
+    content = (
+      <View style={styles.container}>
+        <Text
+          style={
+            styles.header
+          }>{`${data.name[0].toUpperCase()}${data.name.slice(1)}`}</Text>
         <Image
           style={styles.pokeImage}
           source={{uri: data?.sprites?.front_default ?? ''}}
+        />
+        <FlatList
+          data={data.types}
+          keyExtractor={({type}) => type!.name!}
+          contentContainerStyle={styles.typeContainer}
+          renderItem={({item: {type}}) => {
+            return <Text>{type!.name!}</Text>;
+          }}
         />
         <Button
           title="add pokemon to party"
@@ -65,17 +76,25 @@ export function PokemonSearchById({
     );
   }
 
-  return (
-    <View>
-      <Text>{pokemon}</Text>
-      {content}
-    </View>
-  );
+  return <>{content}</>;
 }
 
 const styles = StyleSheet.create({
   pokeImage: {
     width: 200,
     height: 200,
+  },
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingBottom: 50,
+  },
+  typeContainer: {
+    gap: 8,
+    flexDirection: 'row',
+  },
+  header: {
+    fontSize: 50,
   },
 });

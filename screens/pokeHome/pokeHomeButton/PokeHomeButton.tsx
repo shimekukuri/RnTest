@@ -1,3 +1,4 @@
+import { RootStackParamList } from '@/screens/StackNav/Navigator';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {ReactNode} from 'react';
 import {
@@ -7,7 +8,6 @@ import {
   ViewStyle,
   StyleSheet,
 } from 'react-native';
-import {RootStackParamList} from '../../../App';
 
 export function PokeHomeButton({
   onPress,
